@@ -91,7 +91,7 @@ public class SearchPage {
     String authorText = "";
     public void countAuthors(){
         for (int i = 2; i < 20; i++) {
-            if (i == 5 || i == 14) {
+            if (i == 5) {
                 i += 1;
             }
             for (int j = 1; j < 10; j++) {
@@ -120,7 +120,7 @@ public class SearchPage {
     //идентифицируем бестселлеры и проставляем булеан
     public void getBest() {
         for (int i = 2; i < 20; i++) {
-            if (i == 5 || i == 14) {i += 1; }
+            if (i == 5) {i += 1; }
             if (driver.findElements(By.xpath("//*[@id=\"search\"]/div[1]/div[1]/div/span[3]/div[2]/div["+i+"]/div/div/div/div/div/div[1]/div/div[1]/div/span/div")).size() != 0) {
                 booksIsBestSeller.add(Boolean.TRUE);
             } else booksIsBestSeller.add(Boolean.FALSE);

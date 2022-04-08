@@ -37,7 +37,7 @@ public class SearchPage {
     }
 
     public void pressSearchButton() {
-        searchButton.click1();
+        searchButton.click();
     }
 
     //объявляем аррей лист для всех книг на странице

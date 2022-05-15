@@ -67,25 +67,25 @@ public class SearchPage {
     }
 
     //добавляем цены в аррей лист
-    public void countPrices() {
-        List<WebElement> wholePrice = driver.findElements(By.xpath("//span[contains(@class, 'a-price-whole')]"));
-        for (WebElement ep : wholePrice) {
-            if (ep.getText() != null || wholePrice.size() != 0) {
-                booksPrice.add(ep.getText());
-            } else booksPrice.add("0");
-        }
-    }
-
-    //добавляем цену после точки в аррей лист
-    public void countPricesFraction() {
-            List<WebElement> fractionPrice = driver.findElements(By.xpath("//span[contains(@class, 'a-price-fraction')]"));
-            for (WebElement ep : fractionPrice) {
-                if (ep.getText() != null || fractionPrice.size() != 0) {
-                    booksPriceFraction.add(ep.getText());
-                }
-                else booksPriceFraction.add(".00");
-            }
-        }
+//    public void countPrices() {
+//        List<WebElement> wholePrice = driver.findElements(By.xpath("//span[contains(@class, 'a-price-whole')]"));
+//        for (WebElement ep : wholePrice) {
+//            if (ep.getText() != null || wholePrice.size() != 0) {
+//                booksPrice.add(ep.getText());
+//            } else booksPrice.add("0");
+//        }
+//    }
+//
+//    //добавляем цену после точки в аррей лист
+//    public void countPricesFraction() {
+//            List<WebElement> fractionPrice = driver.findElements(By.xpath("//span[contains(@class, 'a-price-fraction')]"));
+//            for (WebElement ep : fractionPrice) {
+//                if (ep.getText() != null || fractionPrice.size() != 0) {
+//                    booksPriceFraction.add(ep.getText());
+//                }
+//                else booksPriceFraction.add(".00");
+//            }
+//        }
 
     //добавляем авторов в аррей лист (случай если автор в span теге и случай для a тега)
     String authorText = "";
@@ -131,10 +131,11 @@ public class SearchPage {
     public String getBookName() {
         String bookName = booksName.get(0);
         for (int i = 0; i < count; i++) {
-            if (booksName.get(i).equals("Head First Java: Edition en anglais")) {
+            if (booksName.get(i).equals("Head First Java: Edition en anglais (A Brain Friendly Guide)")) {
                 bookName = booksName.get(i);
                 break;
             }
+            else bookName = "";
         }
         return bookName;
     }
@@ -148,11 +149,13 @@ public class SearchPage {
         static String bookAuthor;
 
         //создаем конструктор
-        public BookObject(String bookName, String bookPrice, String bookPriceFraction, Boolean isBestSeller, String bookAuthor) {
+//        public BookObject(String bookName, String bookPrice, String bookPriceFraction, Boolean isBestSeller, String bookAuthor) {
+        public BookObject(String bookName, Boolean isBestSeller, String bookAuthor) {
+
             BookObject.bookAuthor = bookAuthor;
             BookObject.bookName = bookName;
-            BookObject.bookPrice = bookPrice;
-            BookObject.bookPriceFraction = bookPriceFraction;
+           // BookObject.bookPrice = bookPrice;
+           // BookObject.bookPriceFraction = bookPriceFraction;
             BookObject.isBestSeller = String.valueOf(isBestSeller);
         }
     }
@@ -161,8 +164,11 @@ public class SearchPage {
     public void getBooks() {
         ArrayList<BookObject> arrayOfBooks = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            arrayOfBooks.add(new BookObject(booksName.get(i), booksPrice.get(i), booksPriceFraction.get(i), booksIsBestSeller.get(i), booksAuthor.get(i)));
-            System.out.println(i + ". Book name: " + "\"" + BookObject.bookName + "\";" + " Book price = £" + BookObject.bookPrice + "." + BookObject.bookPriceFraction + "; Best Seller = " + BookObject.isBestSeller + "; Author: " + BookObject.bookAuthor);
+            arrayOfBooks.add(new BookObject(booksName.get(i), booksIsBestSeller.get(i), booksAuthor.get(i)));
+            System.out.println(i + ". Book name: " + "\"" + BookObject.bookName + "\";" + " Best Seller = " + BookObject.isBestSeller + "; Author: " + BookObject.bookAuthor);
+
+//            arrayOfBooks.add(new BookObject(booksName.get(i), booksPrice.get(i), booksPriceFraction.get(i), booksIsBestSeller.get(i), booksAuthor.get(i)));
+//            System.out.println(i + ". Book name: " + "\"" + BookObject.bookName + "\";" + " Book price = £" + BookObject.bookPrice + "." + BookObject.bookPriceFraction + "; Best Seller = " + BookObject.isBestSeller + "; Author: " + BookObject.bookAuthor);
         }
     }
 }

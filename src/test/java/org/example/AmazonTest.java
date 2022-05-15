@@ -62,9 +62,9 @@ public class AmazonTest {
         //добавляем в лист тайтлы книг
         searchPage.countNames();
         //добавляем в лист цены книг
-        searchPage.countPrices();
+       // searchPage.countPrices();
         //добавляем в лист цену после точки
-        searchPage.countPricesFraction();
+       // searchPage.countPricesFraction();
         //определяем бест селлер ли
         searchPage.getBest();
         //добавляем в лист авторов
